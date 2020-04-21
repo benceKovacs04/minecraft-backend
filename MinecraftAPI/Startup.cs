@@ -15,8 +15,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using MinecraftAPI.APIInterfaces;
 using MinecraftAPI.DB;
 using MinecraftAPI.Models.DBModels;
+using MinecraftAPI.Services;
 
 namespace MinecraftAPI
 {
@@ -77,6 +79,8 @@ namespace MinecraftAPI
                     .WithOrigins("http://localhost:3000");
                 });
             });
+
+            services.AddScoped<ITokenService, TokenService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
