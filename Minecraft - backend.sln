@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftAPI", "MinecraftAPI\MinecraftAPI.csproj", "{DD500B67-BB32-4911-8219-82D1F58C7F80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftWebSocket", "MinecraftWebSocket\MinecraftWebSocket.csproj", "{C8DCD2D5-40F0-4EEA-86C7-7ABB3AC97698}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD500B67-BB32-4911-8219-82D1F58C7F80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD500B67-BB32-4911-8219-82D1F58C7F80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD500B67-BB32-4911-8219-82D1F58C7F80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD500B67-BB32-4911-8219-82D1F58C7F80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8DCD2D5-40F0-4EEA-86C7-7ABB3AC97698}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8DCD2D5-40F0-4EEA-86C7-7ABB3AC97698}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8DCD2D5-40F0-4EEA-86C7-7ABB3AC97698}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8DCD2D5-40F0-4EEA-86C7-7ABB3AC97698}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {809CDA90-1C72-4A74-AC13-9A1DD805A9DB}
+	EndGlobalSection
+EndGlobal
