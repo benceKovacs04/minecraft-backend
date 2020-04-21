@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MinecraftWebSocket.Services
 {
-    public class ConnectionMappingService : IConnectionMapping
+    public class ConnectionMappingService : IConnectionMappingService
     {
         private readonly Dictionary<string, HashSet<string>> _connections = new Dictionary<string, HashSet<string>>();
 

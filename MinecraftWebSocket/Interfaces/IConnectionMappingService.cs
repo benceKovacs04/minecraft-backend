@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MinecraftWebSocket.Interfaces
 {
-    interface IConnectionMapping
+    interface IConnectionMappingService
     {
         void AddConnection(string username, string connectionId);
 
