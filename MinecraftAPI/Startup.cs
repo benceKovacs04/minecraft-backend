@@ -16,7 +16,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using MinecraftAPI.DB;
-using MinecraftAPI.Models;
+using MinecraftAPI.Models.DBModels;
 
 namespace MinecraftAPI
 {

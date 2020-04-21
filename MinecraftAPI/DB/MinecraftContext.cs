@@ -1,4 +1,4 @@
-﻿using MinecraftAPI.Models;
+﻿using MinecraftAPI.Models.DBModels;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
