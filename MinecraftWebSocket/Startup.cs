@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Minecraft;
+using Minecraft.Game;
+using Minecraft.Interfaces;
+using MinecraftWebSocket.Broadcasters;
+using MinecraftWebSocket.Hubs;
 
 namespace MinecraftWebSocket
 {
@@ -26,6 +28,24 @@ namespace MinecraftWebSocket
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSignalR();
+
+            services.AddCors(options => options.AddPolicy("CorsPolicy",
+            builder =>
+            {
+                builder.AllowAnyMethod().AllowAnyHeader()
+                       .WithOrigins("http://localhost:3000")
+                       .AllowCredentials();
+            }));
+
+            GameManager manager = new GameManager();
+            manager.InitGameState();
+
+            services.AddSingleton<IStateSupplier<Block>>(manager);
+
+            services.AddHostedService<BroadcasterHostedService>();
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,6 +56,8 @@ namespace MinecraftWebSocket
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("CorsPolicy");
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -45,6 +67,7 @@ namespace MinecraftWebSocket
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<GameHub>("/game");
             });
         }
     }
