@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using Minecraft;
 using Minecraft.Game;
+using Minecraft.Interfaces;
 using MinecraftWebSocket.Broadcasters;
 using MinecraftWebSocket.Interfaces;
 using MinecraftWebSocket.Services;
@@ -14,8 +16,8 @@ namespace MinecraftWebSocket.Hubs
 {
     public class GameHub : Hub
     {
-        private readonly GameManager _gameManager;
-        public GameHub(GameManager manager)
+        private readonly IGameManager<Dictionary<int, Dictionary<int, Dictionary<int, Block>>>> _gameManager;
+        public GameHub(IGameManager<Dictionary<int, Dictionary<int, Dictionary<int, Block>>>> manager)
         {
             _gameManager = manager;
         }
@@ -28,6 +30,8 @@ namespace MinecraftWebSocket.Hubs
             {
                 Clients.All.SendAsync("ReceiveGameState", JsonConvert.SerializeObject(state[i], new StringEnumConverter()));
             }
+
+           // Clients.All.SendAsync("ReceiveGameState", JsonConvert.SerializeObject(state, new StringEnumConverter()));
 
             return base.OnConnectedAsync();
         }

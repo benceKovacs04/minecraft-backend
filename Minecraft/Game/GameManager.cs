@@ -12,11 +12,12 @@ namespace Minecraft.Game
 
         public GameManager()
         {
-            this.InitGameState();
+             InitGameState();
         }
         private void InitGameState()
         {
-            for(int y = 0; y < 100; y++)
+
+            for (int y = 0; y < 100; y++)
             {
                 Dictionary<int, Dictionary<int, Block>> verticalSlice = new Dictionary<int, Dictionary<int, Block>>();
                 for (int z = 0; z < 100; z++)
@@ -38,7 +39,7 @@ namespace Minecraft.Game
                 }
                 GameState[y] = verticalSlice;
             }
-            
+
         }
         public Dictionary<int, Dictionary<int, Dictionary<int, Block>>> GetGameState()
         {
