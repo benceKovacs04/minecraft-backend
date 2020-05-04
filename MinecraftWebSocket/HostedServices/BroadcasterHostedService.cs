@@ -15,12 +15,12 @@ namespace MinecraftWebSocket.Broadcasters
 {
     public class BroadcasterHostedService : IHostedService, IDisposable
     {
-        private readonly TimeSpan BroadcastInterval = TimeSpan.FromSeconds(2);
+        private readonly TimeSpan BroadcastInterval = TimeSpan.FromSeconds(5);
         private readonly IHubContext<GameHub> _hubContext;
         private Timer _broadcastLoop;
-        private readonly IStateSupplier<Block> _gameManager;
+        private readonly IStateSupplier<Dictionary<int, Dictionary<int, Dictionary<int, Block>>>> _gameManager;
 
-        public BroadcasterHostedService(IHubContext<GameHub> hubContext, IStateSupplier<Block> gameManager)
+        public BroadcasterHostedService(IHubContext<GameHub> hubContext, IStateSupplier<Dictionary<int, Dictionary<int, Dictionary<int, Block>>>> gameManager)
         {
             _hubContext = hubContext;
             _gameManager = gameManager;

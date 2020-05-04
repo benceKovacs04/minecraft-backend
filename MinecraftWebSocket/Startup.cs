@@ -38,14 +38,9 @@ namespace MinecraftWebSocket
                        .AllowCredentials();
             }));
 
-            GameManager manager = new GameManager();
-            manager.InitGameState();
+           
+            services.AddSingleton<IGameManager<Dictionary<int, Dictionary<int, Dictionary<int, Block>>>>, GameManager>();
 
-            services.AddSingleton<IStateSupplier<Block>>(manager);
-
-            services.AddHostedService<BroadcasterHostedService>();
-
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

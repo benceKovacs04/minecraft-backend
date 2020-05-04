@@ -6,17 +6,45 @@ using System.Text;
 
 namespace Minecraft.Game
 {
-    public class GameManager : IStateSupplier<Block>
+    public class GameManager : IGameManager<Dictionary<int, Dictionary<int, Dictionary<int, Block>>>>
     {
-        private List<Block> GameState;
+        private Dictionary<int, Dictionary<int, Dictionary<int, Block>>> GameState = new Dictionary<int, Dictionary<int, Dictionary<int, Block>>>();
 
-        public void InitGameState()
+        public GameManager()
         {
-            GameState = new List<Block>() { new DirtBlock(), new DirtBlock() };
+            this.InitGameState();
         }
-        public List<Block> GetGameState()
+        private void InitGameState()
+        {
+            for(int y = 0; y < 100; y++)
+            {
+                Dictionary<int, Dictionary<int, Block>> verticalSlice = new Dictionary<int, Dictionary<int, Block>>();
+                for (int z = 0; z < 100; z++)
+                {
+                    Dictionary<int, Block> row = new Dictionary<int, Block>();
+                    for (int x = 0; x < 100; x++)
+                    {
+                        if(y <= 40)
+                        {
+                            row[x] = new DirtBlock() { XPOS = x, ZPOS = z, YPOS = y };
+                        }
+                        else
+                        {
+                            row[x] = new AirBlock() { XPOS = x, ZPOS = z, YPOS = y };
+                        }
+                        
+                    }
+                    verticalSlice[z] = row;
+                }
+                GameState[y] = verticalSlice;
+            }
+            
+        }
+        public Dictionary<int, Dictionary<int, Dictionary<int, Block>>> GetGameState()
         {
             return GameState;
         }
+
+        
     }
 }

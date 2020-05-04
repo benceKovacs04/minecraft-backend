@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using Minecraft.Game;
 using MinecraftWebSocket.Broadcasters;
 using MinecraftWebSocket.Interfaces;
 using MinecraftWebSocket.Services;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,28 +14,22 @@ namespace MinecraftWebSocket.Hubs
 {
     public class GameHub : Hub
     {
+        private readonly GameManager _gameManager;
+        public GameHub(GameManager manager)
+        {
+            _gameManager = manager;
+        }
 
-
-        /*private static readonly IConnectionMappingService _connections = new ConnectionMappingService();
-        
         public override Task OnConnectedAsync()
         {
-            string name = Context.User.Identity.Name;
+            var state = _gameManager.GetGameState();
 
-            _connections.AddConnection(name, Context.ConnectionId);
+            for (int i = 0; i < 100; i++)
+            {
+                Clients.All.SendAsync("ReceiveGameState", JsonConvert.SerializeObject(state[i], new StringEnumConverter()));
+            }
 
             return base.OnConnectedAsync();
         }
-
-        public override Task OnDisconnectedAsync(Exception exception)
-        {
-            _connections.RemoveConnectionIds(Context.User.Identity.Name);
-            return base.OnDisconnectedAsync(exception);
-        }
-
-        public async Task SendData(string username)
-        {
-            var userConnections = _connections.GetConnectionIds(username);
-        } */
     }
 }

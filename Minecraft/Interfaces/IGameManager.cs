@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Minecraft.Interfaces
 {
-    public interface IStateSupplier<T>
+    public interface IGameManager<T>
     {
         T GetGameState();
     }
