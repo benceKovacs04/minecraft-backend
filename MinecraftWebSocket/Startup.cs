@@ -39,7 +39,7 @@ namespace MinecraftWebSocket
             }));
 
            
-            services.AddSingleton<IGameManager<Dictionary<int, Dictionary<int, Dictionary<int, Block>>>>, GameManager>();
+            services.AddSingleton<IGameManager <Block[,]>, GameManager>();
 
         }
 

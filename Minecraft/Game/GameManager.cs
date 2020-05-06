@@ -1,14 +1,16 @@
 ﻿using Minecraft.Blocks;
 using Minecraft.Interfaces;
+using Minecraft.ProceduralGeneration;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Minecraft.Game
 {
-    public class GameManager : IGameManager<Dictionary<int, Dictionary<int, Dictionary<int, Block>>>>
+    public class GameManager : IGameManager<Block[,]>
     {
-        private Dictionary<int, Dictionary<int, Dictionary<int, Block>>> GameState = new Dictionary<int, Dictionary<int, Dictionary<int, Block>>>();
+        private Block[,] GameState = new Block[350, 350];
+        private readonly Generator generator = new Generator();
 
         public GameManager()
         {
@@ -16,32 +18,9 @@ namespace Minecraft.Game
         }
         private void InitGameState()
         {
-
-            for (int y = 0; y < 100; y++)
-            {
-                Dictionary<int, Dictionary<int, Block>> verticalSlice = new Dictionary<int, Dictionary<int, Block>>();
-                for (int z = 0; z < 100; z++)
-                {
-                    Dictionary<int, Block> row = new Dictionary<int, Block>();
-                    for (int x = 0; x < 100; x++)
-                    {
-                        if(y <= 40)
-                        {
-                            row[x] = new DirtBlock() { XPOS = x, ZPOS = z, YPOS = y };
-                        }
-                        else
-                        {
-                            row[x] = new AirBlock() { XPOS = x, ZPOS = z, YPOS = y };
-                        }
-                        
-                    }
-                    verticalSlice[z] = row;
-                }
-                GameState[y] = verticalSlice;
-            }
-
+            GameState = generator.GenerateSurface(350, 350);
         }
-        public Dictionary<int, Dictionary<int, Dictionary<int, Block>>> GetGameState()
+        public Block[,] GetGameState()
         {
             return GameState;
         }

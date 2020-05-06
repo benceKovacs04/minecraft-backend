@@ -16,8 +16,8 @@ namespace MinecraftWebSocket.Hubs
 {
     public class GameHub : Hub
     {
-        private readonly IGameManager<Dictionary<int, Dictionary<int, Dictionary<int, Block>>>> _gameManager;
-        public GameHub(IGameManager<Dictionary<int, Dictionary<int, Dictionary<int, Block>>>> manager)
+        private readonly IGameManager<Block[,]> _gameManager;
+        public GameHub(IGameManager<Block[,]> manager)
         {
             _gameManager = manager;
         }
@@ -26,12 +26,13 @@ namespace MinecraftWebSocket.Hubs
         {
             var state = _gameManager.GetGameState();
 
-            for (int i = 0; i < 100; i++)
+            /*for (int i = 0; i < 100; i++)
             {
                 Clients.All.SendAsync("ReceiveGameState", JsonConvert.SerializeObject(state[i], new StringEnumConverter()));
-            }
+            }*/
 
-           // Clients.All.SendAsync("ReceiveGameState", JsonConvert.SerializeObject(state, new StringEnumConverter()));
+            Clients.All.SendAsync("ReceiveGameState", JsonConvert.SerializeObject(state, new StringEnumConverter()));
+
 
             return base.OnConnectedAsync();
         }
