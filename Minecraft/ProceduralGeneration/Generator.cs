@@ -15,6 +15,11 @@ namespace Minecraft.ProceduralGeneration
             _noise.SetNoiseType(FastNoise.NoiseType.Perlin);
         }
 
+        public void SetRandomSeed()
+        {
+            _noise.SetSeed(rnd.Next());
+        }
+
         public Block[,] GenerateSurface(int width, int height)
         {
 
