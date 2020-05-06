@@ -18,6 +18,7 @@ namespace Minecraft.Game
         }
         private void InitGameState()
         {
+            generator.SetRandomSeed();
             GameState = generator.GenerateSurface(350, 350);
         }
         public Block[,] GetGameState()
